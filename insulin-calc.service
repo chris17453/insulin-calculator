@@ -6,7 +6,7 @@ After=network.target
 User=nginx
 Group=nginx
 WorkingDirectory=/web/insulin-calculator.com/
-#Environment=”PATH=/web/support-assistant/venv/bin”
+Environment=”PATH=/web/support-assistant/venv/bin”
 ExecStart=/usr/local/bin/uwsgi --ini /web/insulin-calculator.com/uwsgi-config.ini
 
 [Install]
