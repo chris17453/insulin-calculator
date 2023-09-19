@@ -8,7 +8,7 @@ install-reqs:
 
 nginx:
 	@cp conf/insulin-calculator.com.conf /etc/nginx/conf.d/
-	
+
 requirements:
 	@pipenv requirements>requirements.txt
 
@@ -27,3 +27,5 @@ stop:
 
 restart: stop start
 
+beta:
+	python -m app
