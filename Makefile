@@ -54,4 +54,5 @@ commit:
 	@git commit -m 'Update'
 	@git push
 
-
+make-db-pdf:
+	@python -m app.models.create-pdf

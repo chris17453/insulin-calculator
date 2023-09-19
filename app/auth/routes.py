@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from app.auth import bp
 from app.models.user import User
 
-@bp.route('/login', methods=['GET', 'POST'])
+@bp.route('/sign-in', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
@@ -21,7 +21,7 @@ def login():
 
     return render_template('login.html')
 
-@bp.route('/logout')
+@bp.route('/sign-out')
 @login_required
 def logout():
     logout_user()
