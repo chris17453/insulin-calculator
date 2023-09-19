@@ -24,10 +24,10 @@
 
 ## Todo Database
 - x user table
--   food table
--   meal- table (of food items and quantites)
--   glucose recording table
-- permission table
+- o food table
+- o meal- table (of food items and quantites)
+- o glucose recording table
+- o permission table
 all tables are owned by an entity, which is owned by another entity, which is owned by another (Household-parent-child)
 
 ## Todo Templates
@@ -38,17 +38,17 @@ all tables are owned by an entity, which is owned by another entity, which is ow
 - x home
 
 ## Code
-- signup
-- contact
-- mail
-- dashboard
+- o signup
+- o contact
+- o mail
+- o dashboard
 
 ## UI
-- content signup
-- content login
-- content logout
-- content dashboard
-- content main
-- graphics for LOGO
-- graphics for fav-icon
+- o content signup
+- o content login
+- o content logout
+- o content dashboard
+- o content main
+- o graphics for LOGO
+- o graphics for fav-icon
 
