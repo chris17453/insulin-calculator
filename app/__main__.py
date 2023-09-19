@@ -21,6 +21,13 @@ app.register_blueprint(main_bp)
 from app.auth import bp as auth_bp
 app.register_blueprint(auth_bp)
 
+from app.signup import bp as signup_bp
+app.register_blueprint(signup_bp)
+
+
+from app.contact import bp as contact_bp
+app.register_blueprint(contact_bp)
+
 from app.dashboard import bp as dash_bp
 app.register_blueprint(dash_bp)
 
@@ -33,4 +40,4 @@ def load_user(user_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,)

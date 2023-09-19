@@ -19,7 +19,7 @@ requirements:
 
 # PROD
 service:
-	@cp insulin-calc.service /etc/systemd/system/insulin-calc.service 
+	@cp conf/insulin-calc.service /etc/systemd/system/insulin-calc.service 
 	@systemctl daemon-reload
 
 # PROD
@@ -48,5 +48,10 @@ install-dev:
 # Dev
 shell:
 	@pipenv shell
+
+commit:
+	@git add -A
+	@git commit -m 'Update'
+	@git push
 
 
