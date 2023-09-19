@@ -6,6 +6,9 @@ install-reqs:
 	@python install -r requirements
 	@pip3 install uwsgi
 
+nginx:
+	@cp conf/insulin-calculator.com.conf /etc/nginx/conf.d/
+	
 requirements:
 	@pipenv requirements>requirements.txt
 
