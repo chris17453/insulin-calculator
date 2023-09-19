@@ -13,7 +13,9 @@
 - http://localhost:5000/dashboard
 - http://localhost:5000/logout
 
-
+# TODO
+- x is done
+- o is todo
 
 ## TODO Infra
 - x Prod infrastructure
