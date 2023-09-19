@@ -7,7 +7,7 @@ User=nginx
 Group=nginx
 WorkingDirectory=/web/insulin-calculator.com/
 Environment=”PATH=/web/insulin-calculator.com/venv/bin”
-ExecStart=/web/insulin-calculator.com/venv/bin --ini /web/insulin-calculator.com/uwsgi-config.ini
+ExecStart=/web/insulin-calculator.com/venv/bin/uwsgi --ini /web/insulin-calculator.com/uwsgi-config.ini
 
 [Install]
 WantedBy=multi-user.target
