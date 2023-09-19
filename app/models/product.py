@@ -14,8 +14,6 @@ class Product(db.Model):
     serving_size = db.Column(db.String(50), nullable=True)  # e.g., "100g", "250ml"
     calories = db.Column(db.Integer, nullable=True)
 
-    owner = db.relationship('Accounts', backref=db.backref('products', lazy=True))
-
     def __repr__(self):
         return (f"<Product(id={self.id}, name='{self.name}', account_id={self.account_id}, "
                 f"desc='{self.desc}', vendor='{self.vendor}', metric_type='{self.metric_type}', "

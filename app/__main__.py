@@ -1,7 +1,6 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-
+from flask import Flask
+from flask_login import LoginManager
+from flask_restful import Api
 
 from app.config import Config
 from app.extensions import db
@@ -37,6 +36,27 @@ login_manager.login_view = 'auth.login'
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+api = Api(app)
+from app.api.accountAPI       import AccountAPI
+from app.api.activationAPI    import ActivationAPI
+from app.api.meal_itemAPI     import MealItemAPI
+from app.api.mealAPI          import MealAPI
+from app.api.personAPI        import PersonAPI
+from app.api.product_imageAPI import ProductImageAPI
+from app.api.productAPI       import ProductAPI
+from app.api.userAPI          import UserAPI
+
+api.add_resource(AccountAPI     , '/api/activations'   , '/api/accounts/<int:account_id>')
+api.add_resource(ActivationAPI  , '/api/activations'   , '/api/activations/<int:id>')
+api.add_resource(MealItemAPI    , '/api/meal-items'    , '/api/meal-items/<int:id>')
+api.add_resource(MealAPI        , '/api/meals'         , '/api/meals/<int:id>')
+api.add_resource(PersonAPI      , '/api/persons'       , '/api/persons/<int:id>')
+api.add_resource(ProductImageAPI, '/api/product-images', '/api/product-images/<int:id>')
+api.add_resource(ProductAPI     , '/api/products'      , '/api/products/<int:id>')
+api.add_resource(UserAPI        , '/api/users'         , '/api/users/<int:id>')
+
+
 
 
 if __name__ == '__main__':

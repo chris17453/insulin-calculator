@@ -55,4 +55,4 @@ commit:
 	@git push
 
 make-db-pdf:
-	@python -m app.models.create-pdf
+	@python -m app.models.create-db-pdf

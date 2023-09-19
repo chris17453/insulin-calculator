@@ -12,8 +12,6 @@ class ProductImage(db.Model):
     height = db.Column(db.Integer, nullable=True)
     file_type = db.Column(db.String(50), nullable=True)  # e.g., "png", "jpg", "gif"
 
-    product = db.relationship('Product', backref=db.backref('images', lazy=True))
-
     def __repr__(self):
         return (f"<ProductImage(id={self.id}, product_id={self.product_id}, "
                 f"image_path='{self.image_path}', width={self.width}, "

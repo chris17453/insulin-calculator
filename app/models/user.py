@@ -2,6 +2,7 @@
 #from sqlalchemy import Column, Integer, String, Float
 
 from app.extensions import db
+from app.models.account import Account
 
 
 #class User(UserMixin, db.Model):
@@ -25,9 +26,6 @@ class User(db.Model):
     created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     last_used = db.Column(db.DateTime, nullable=True)
 
-    account = db.relationship('Account', backref=db.backref('users', lazy=True))
-    person = db.relationship('People', backref=db.backref('people', lazy=True))
-
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -37,3 +35,4 @@ class User(db.Model):
     def __repr__(self):
         return (f"<User(id={self.id}, username='{self.username}', email='{self.email}', "
                 f"active={self.active}, created='{self.created}', last_used='{self.last_used}')>")
+

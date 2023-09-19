@@ -9,8 +9,6 @@ class Activate(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
-    user = db.relationship('User', backref=db.backref('activation', lazy=True))
-
     def __repr__(self):
         return (f"<Activate(id={self.id}, links_uid='{self.links_uid}', "
                 f"user_id={self.user_id}, created='{self.created}')>")

@@ -9,7 +9,6 @@ from app.models.account import Account
 from app.models.activate import Activate
 from app.models.meal   import Meal
 from app.models.meal_item import MealItem
-from app.models.owner import Owner
 from app.models.person import Person
 from app.models.product_image import ProductImage
 from app.models.product import Product

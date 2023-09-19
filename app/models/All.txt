@@ -1,0 +1,193 @@
+from datetime import datetime
+from app.extensions import db
+
+class Account(db.Model):
+    __tablename__ = 'accounts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    active = db.Column(db.Boolean, default=True, nullable=False)
+    created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    last_used = db.Column(db.DateTime, nullable=True)
+    activated = db.Column(db.DateTime, nullable=True)
+
+    user = db.relationship('User', backref=db.backref('account', lazy=True))
+
+    def __repr__(self):
+        return (f"<Account(id={self.id}, owner_id={self.owner_id}, active={self.active}, "
+                f"created='{self.created}', last_used='{self.last_used}', activated='{self.activated}')>")
+from datetime import datetime
+from app.extensions import db
+
+class Activate(db.Model):
+    __tablename__ = 'activations'
+
+    id = db.Column(db.Integer, primary_key=True)
+    links_uid = db.Column(db.String(128), unique=True, nullable=False)  # This can be a unique token or identifier
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    user = db.relationship('User', backref=db.backref('activation', lazy=True))
+
+    def __repr__(self):
+        return (f"<Activate(id={self.id}, links_uid='{self.links_uid}', "
+                f"user_id={self.user_id}, created='{self.created}')>")
+from app.__main__ import app
+
+from app.extensions import db
+from app.config import Config
+
+from eralchemy2 import render_er
+
+from app.models.account import Account
+from app.models.activate import Activate
+from app.models.meal   import Meal
+from app.models.meal_item import MealItem
+from app.models.person import Person
+from app.models.product_image import ProductImage
+from app.models.product import Product
+from app.models.user import User
+ 
+with app.app_context():
+    db.create_all()
+
+
+## Draw from SQLAlchemy base
+#render_erdb, 'erd_from_sqlalchemy.png')
+
+## Draw from database
+render_er(Config.SQLALCHEMY_DATABASE_URI, 'docs/erd_from_sqlite.pdf')from app.extensions import db
+
+class MealItem(db.Model):
+    __tablename__ = 'meal_items'
+
+    id = db.Column(db.Integer, primary_key=True)
+    meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    servings = db.Column(db.Float, nullable=False)
+
+    meal = db.relationship('Meal', backref=db.backref('meal_item', lazy=True))
+    product = db.relationship('Product', backref=db.backref('meal_item', lazy=True))
+
+    def __repr__(self):
+        return (f"<MealItem(id={self.id}, meal_id={self.meal_id}, "
+                f"product_id={self.product_id}, servings={self.servings})>")
+from datetime import datetime
+from app.extensions import db
+
+class Meal(db.Model):
+    __tablename__ = 'meals'
+
+    id = db.Column(db.Integer, primary_key=True)
+    person_id = db.Column(db.Integer, db.ForeignKey('people.id'), nullable=False)
+    date_time = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+
+    person = db.relationship('People', backref=db.backref('meals', lazy=True))
+
+    def __repr__(self):
+        return (f"<Meal(id={self.id}, person_id={self.person_id}, "
+                f"date_time='{self.date_time}', name='{self.name}')>")
+from app.extensions import db
+
+class Person(db.Model):
+    __tablename__ = 'people'
+
+    id = db.Column(db.Integer, primary_key=True)
+    account_id = db.Column(db.Integer, db.ForeignKey('accounts.id'), nullable=False)
+    display_name = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(50), nullable=True)
+    middle_name = db.Column(db.String(50), nullable=True)
+    last_name = db.Column(db.String(50), nullable=False)
+    birthday = db.Column(db.Date, nullable=True)
+    
+    account = db.relationship('Account', backref=db.backref('people', lazy=True))
+
+    def __repr__(self):
+        return f"<Person(id={self.id}, display_name='{self.display_name}', first_name='{self.first_name}', last_name='{self.last_name}', birthday='{self.birthday}')>"
+    
+from app.extensions import db
+
+from app.extensions import db
+
+class ProductImage(db.Model):
+    __tablename__ = 'product_images'
+
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    image_path = db.Column(db.String(500), nullable=False)  # URL or filesystem path
+    width = db.Column(db.Integer, nullable=True)
+    height = db.Column(db.Integer, nullable=True)
+    file_type = db.Column(db.String(50), nullable=True)  # e.g., "png", "jpg", "gif"
+
+    product = db.relationship('Product', backref=db.backref('images', lazy=True))
+
+    def __repr__(self):
+        return (f"<ProductImage(id={self.id}, product_id={self.product_id}, "
+                f"image_path='{self.image_path}', width={self.width}, "
+                f"height={self.height}, file_type='{self.file_type}')>")
+
+    
+from app.extensions import db
+
+
+class Product(db.Model):
+    __tablename__ = 'products'
+
+    id = db.Column(db.Integer, primary_key=True)
+    account_id = db.Column(db.Integer, db.ForeignKey('accounts.id'), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    desc = db.Column(db.String(500), nullable=True)  # Description
+    vendor = db.Column(db.String(100), nullable=True)
+    metric_type = db.Column(db.String(50), nullable=True)  # e.g., "gram", "liter", "piece"
+    servings = db.Column(db.Integer, nullable=True)
+    serving_size = db.Column(db.String(50), nullable=True)  # e.g., "100g", "250ml"
+    calories = db.Column(db.Integer, nullable=True)
+
+    owner = db.relationship('Accounts', backref=db.backref('products', lazy=True))
+
+    def __repr__(self):
+        return (f"<Product(id={self.id}, name='{self.name}', account_id={self.account_id}, "
+                f"desc='{self.desc}', vendor='{self.vendor}', metric_type='{self.metric_type}', "
+                f"servings={self.servings}, serving_size='{self.serving_size}', calories={self.calories})>")
+
+
+#from flask_login import UserMixin
+#from sqlalchemy import Column, Integer, String, Float
+
+from app.extensions import db
+
+
+#class User(UserMixin, db.Model):
+ #   id = Column(Integer, primary_key=True)
+ #   username = Column(String(150), unique=True, nullable=False)
+ #   password = Column(String(150), nullable=False)
+
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+
+class User(db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    account_id = db.Column(db.Integer, db.ForeignKey('accounts.id'), nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('people.id'), nullable=False)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    active = db.Column(db.Boolean, default=True, nullable=False)
+    created = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    last_used = db.Column(db.DateTime, nullable=True)
+
+    accounts = db.relationship('Account', backref=db.backref('users', lazy=True))
+    people = db.relationship('Person', backref=db.backref('users', lazy=True))
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return (f"<User(id={self.id}, username='{self.username}', email='{self.email}', "
+                f"active={self.active}, created='{self.created}', last_used='{self.last_used}')>")
+
