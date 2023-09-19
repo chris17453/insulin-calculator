@@ -33,6 +33,8 @@
 - o contact
 - o activation links
 - o mail queue
+- o site configuration (domain name, mail retention, cron intervals)
+
 all tables are owned by an entity, which is owned by another entity, which is owned by another (Household-parent-child)
 
 ## Todo Templates / Blueprints
@@ -58,3 +60,7 @@ all tables are owned by an entity, which is owned by another entity, which is ow
 - o content main
 - o graphics for LOGO
 - o graphics for fav-icon
+
+
+# Backlog
+- Mail system, runs on 1 minute cron, reads table, sends email. flags table item as sent. retain for configuration retiontion periods
