@@ -47,14 +47,14 @@ from app.api.product_imageAPI import ProductImageAPI
 from app.api.productAPI       import ProductAPI
 from app.api.userAPI          import UserAPI
 
-api.add_resource(AccountAPI     , '/api/activations'   , '/api/accounts/<int:account_id>')
-api.add_resource(ActivationAPI  , '/api/activations'   , '/api/activations/<int:id>')
-api.add_resource(MealItemAPI    , '/api/meal-items'    , '/api/meal-items/<int:id>')
-api.add_resource(MealAPI        , '/api/meals'         , '/api/meals/<int:id>')
-api.add_resource(PersonAPI      , '/api/persons'       , '/api/persons/<int:id>')
-api.add_resource(ProductImageAPI, '/api/product-images', '/api/product-images/<int:id>')
-api.add_resource(ProductAPI     , '/api/products'      , '/api/products/<int:id>')
-api.add_resource(UserAPI        , '/api/users'         , '/api/users/<int:id>')
+api.add_resource(AccountAPI     , '/api/account'      , '/api/account/<int:account_id>')
+api.add_resource(ActivationAPI  , '/api/activation'   , '/api/activation/<int:id>')
+api.add_resource(MealItemAPI    , '/api/meal-item'    , '/api/meal-item/<int:id>')
+api.add_resource(MealAPI        , '/api/meal'         , '/api/meal/<int:id>')
+api.add_resource(PersonAPI      , '/api/person'       , '/api/person/<int:id>')
+api.add_resource(ProductImageAPI, '/api/product-image', '/api/product-image/<int:id>')
+api.add_resource(ProductAPI     , '/api/product'      , '/api/product/<int:id>')
+api.add_resource(UserAPI        , '/api/user'         , '/api/user/<int:id>')
 
 
 
