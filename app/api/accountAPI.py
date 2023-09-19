@@ -1,7 +1,5 @@
-from flask import Flask, request
 from flask_restful import Resource, reqparse
 
-#from app.__main__ import api
 from app.extensions import db
 from app.models.account import Account
 
