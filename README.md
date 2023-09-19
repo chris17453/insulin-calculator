@@ -32,7 +32,7 @@
 - o permission table
 all tables are owned by an entity, which is owned by another entity, which is owned by another (Household-parent-child)
 
-## Todo Templates
+## Todo Templates / Blueprints
 - x contact
 - x signup
 - x login
