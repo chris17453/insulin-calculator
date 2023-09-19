@@ -24,7 +24,7 @@
 - x uwsgi setup
 - x dev setup (make file/pipenv)
 
-## Todo Database
+## Todo Models for Database
 - x user table
 - o food table
 - o meal- table (of food items and quantites)
@@ -45,6 +45,8 @@ all tables are owned by an entity, which is owned by another entity, which is ow
 - o mail
 - o dashboard
 
+
+
 ## UI
 - o content signup
 - o content login
@@ -53,4 +55,3 @@ all tables are owned by an entity, which is owned by another entity, which is ow
 - o content main
 - o graphics for LOGO
 - o graphics for fav-icon
-
