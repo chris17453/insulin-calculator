@@ -30,6 +30,9 @@
 - o meal- table (of food items and quantites)
 - o glucose recording table
 - o permission table
+- o contact
+- o activation links
+- o mail queue
 all tables are owned by an entity, which is owned by another entity, which is owned by another (Household-parent-child)
 
 ## Todo Templates / Blueprints
@@ -42,7 +45,7 @@ all tables are owned by an entity, which is owned by another entity, which is ow
 ## Code
 - o signup
 - o contact
-- o mail
+- o mail (mail must go to queue/db.. no direct linkage to form)
 - o dashboard
 
 
