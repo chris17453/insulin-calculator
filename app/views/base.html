@@ -23,8 +23,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark border border-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <img src=" https://dummyimage.com/100x30/007bff/efefef" alt="UI Kit"
-            style="width: 100px;">
+          <img src="/assets/logo.png" alt="Insulin-Calculator"
+            style="width: 250px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarTogglerDemo03"
@@ -39,10 +39,10 @@
                   class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item me-3">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="/about">About</a>
             </li>
             <li class="nav-item me-3">
-              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link" href="/contact-us">Contact Us</a>
             </li>
             <li class="nav-item me-3">
               <a class="nav-link" href="/sign-in">Sign In</a>
@@ -53,9 +53,6 @@
         </div>
       </div>
     </nav>
-
-
-  
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -69,9 +66,9 @@
 
     {% block content %}
     {% endblock %}
-  
-  
-  
+    <section style="height:170px">
+
+    </section> 
     <section class=" fixed-bottom">
         <footer class="pt-4 pb-4  bg-dark text-light">
         <div class="container">
@@ -79,19 +76,19 @@
             <div class="col">
               <ul class="nav justify-content-center">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Home</a>
+                  <a class="nav-link active" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
+                  <a class="nav-link" href="/features">Features</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Privacy Policy</a>
+                  <a class="nav-link" href="/privacy">Privacy Policy</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Terms</a>
+                  <a class="nav-link" href="/terms">Terms</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
+                  <a class="nav-link" href="/about">About</a>
                 </li>
               </ul>
               <p class="text-h5 mt-4">© 2023-2023 insulin-calculator.com</p>
